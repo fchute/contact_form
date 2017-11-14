@@ -1,27 +1,15 @@
 <?php
 
-include 'authenticate.php';
+include 'Includes\authenticate.php';
 
 
-include 'DB_Config.php';
+include 'Includes\DB_Config.php';
 
 
-
-$query = "SELECT id, username, name, address, state, phone FROM list";
-
+include 'Includes\Fetch_Full_Info.php';
 
 
-$result = mysqli_query($connection, $query);
-
-if (!$result) {
-  # code...
-die("Query FAILED" . mysqli_error()) ;
-}
-
-
-
-
- ?>
+?>
 
 
 <!DOCTYPE html>
@@ -91,7 +79,7 @@ die("Query FAILED" . mysqli_error()) ;
     <h2 class="text-center">Full Directory</h2>
 
     <table style="text-align: left;">
-    <tr><th>Id</th><th>Username</th><th>Name</th><th>Address</th><th>State</th><th>Phone</th></tr>
+    <tr><th>Id</th><th>Username</th><th>Name</th><th>Address</th><th>State</th><th>Phone</th><th>State ID </th></tr>
 
 <?php
 // while ($row= mysqli_fetch_row($result)) {
@@ -111,6 +99,7 @@ while ($row= mysqli_fetch_assoc($result)) {
  echo "<td>" . $row['address'] . "</td>";
  echo "<td>" . $row['state'] . "</td>";
  echo "<td>" . $row['phone'] . "</td>";
+  echo "<td>" . $row['stateid'] . "</td>";
  echo "</tr>";
  // print_r($row);
 

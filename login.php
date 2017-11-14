@@ -2,50 +2,16 @@
 session_start();
 
 
-include 'DB_Config.php';
-if(isset($_POST['submit'])){
+include 'Includes\DB_Config.php';
+if(isset($_POST['submit']))
+  {
 
+  include 'Includes\Prepare_Username_And_Password.php';
 
+  include 'Includes\Check_Username_And_Password.php';
 
-
-$username =  $_POST['username'];
-$password =  $_POST['password'];
-
-$username = mysqli_real_escape_string($connection, $username);
-$password = mysqli_real_escape_string($connection,$password);
-
-$hashFormat= "$2y$10$";
-
-$salt = "iusesomecrazystrings22";
-
-$hashF_and_salt = $hashFormat . $salt;
-
-$password = crypt($password, $hashF_and_salt);
-
-$query = "SELECT * FROM list WHERE username = '$username' AND password = '$password'";
-
-
-
-$result = mysqli_query($connection, $query);
-$rows = mysqli_num_rows($result);
-
-if (!$result) {
-  # code...
-die("Query FAILED" . mysqli_error()) ;
-}
-
-elseif ($rows==1) {
-  # code...
-  $_SESSION['username'] = $username;
-  header("Location: User_Page.php");
-
-}
-else{
-  echo "username/password incorrect";
-}
-
-}
- ?>
+  }
+?>
 
 <!DOCTYPE html>
 <html>

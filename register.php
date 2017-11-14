@@ -2,7 +2,7 @@
 
 session_start();
 
-include 'DB_Config.php';
+include 'Includes\DB_Config.php';
 
 
 
@@ -10,190 +10,24 @@ include 'DB_Config.php';
     if(isset($_POST['submit']))
     {
 
-      $username =$_POST['username'];
-      $username = mysqli_real_escape_string($connection, $username);
+    include 'Includes\preparefields.php';
 
-      $password =$_POST['password'];
-      $password = mysqli_real_escape_string($connection,$password);
-
-    $hashFormat= "$2y$10$";
-
-    $salt = "iusesomecrazystrings22";
-
-    $hashF_and_salt = $hashFormat . $salt;
-
-    $password = crypt($password, $hashF_and_salt);
-
-
-      $name =$_POST['name'];
-      $name = mysqli_real_escape_string($connection, $name);
-
-      $address =$_POST['address'];
-      $address = mysqli_real_escape_string($connection, $address);
-
-      $state =$_POST['state'];
-      $state = mysqli_real_escape_string($connection, $state);
-
-      $phone = $_POST['phone'];
-      $phone = mysqli_real_escape_string($connection, $phone);
-
-
-
-
-        $query = "SHOW TABLES IN ".$database." WHERE Tables_in_".$database." = 'list'";
-
-      $result = mysqli_query($connection, $query);
-      if (!$result) {
-        # code...
-      die("Query FAILED" . mysqli_error($connection)) ;
+    include 'Includes\Add_To_Primary_Directory.php';
     }
-      $rows = mysqli_num_rows($result);
-
-                  if ($rows) {
-
-    $query = "INSERT INTO list(username,password,name,address,state,phone) ";
-    $query .= "VALUE ('$username', '$password', '$name', '$address', '$state', '$phone')";
-
-
-    $result = mysqli_query($connection, $query);
-
-    if (!$result) {
-      # code...
-    die("Query FAILED" . mysqli_error($connection)) ;
-  }
-
-    }
-    else {
-      $query= ( "CREATE TABLE list ( id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, username VARCHAR(30) NOT NULL, password VARCHAR(200) NOT NULL, name VARCHAR(30) NOT NULL, address VARCHAR(30) NOT NULL, state VARCHAR(30) NOT NULL, phone VARCHAR(30) NOT NULL)");
-
-      $result = mysqli_query($connection, $query);
-
-      if (!$result) {
-        # code...
-      die("Query FAILED   here" . mysqli_error($connection)) ;
-      }
-      else {
-
-            $query = "INSERT INTO list(username,password,name,address,state,phone) ";
-            $query .= "VALUE ('$username', '$password', '$name', '$address', '$state', '$phone')";
-
-
-            $result = mysqli_query($connection, $query);
-
-            if (!$result) {
-              # code...
-            die("Query FAILED" . mysqli_error($connection)) ;
-          }
-
-      }
-    }
-}
 
 
     if(isset($_POST['submit']))
     {
 
-    $username =$_POST['username'];
-    $username = mysqli_real_escape_string($connection, $username);
+    include 'Includes\preparefields.php';
 
+    include 'Includes\Add_To_State_Directory.php';
 
-    $name =$_POST['name'];
-    $name = mysqli_real_escape_string($connection, $name);
+    include 'Includes\Add_State_Id_To_Primary_Directory.php';
 
-    $address =$_POST['address'];
-    $address = mysqli_real_escape_string($connection, $address);
+    header("Location: User_Page.php");
 
-    $state =$_POST['state'];
-    $state = mysqli_real_escape_string($connection, $state);
-
-    $phone = $_POST['phone'];
-    $phone = mysqli_real_escape_string($connection, $phone);
-
-
-  $query = "SHOW TABLES IN ".$database." WHERE Tables_in_".$database." =  '$state'";
-
-    $result = mysqli_query($connection, $query);
-    if (!$result) {
-      # code...
-    die("Query FAILED" . mysqli_error($connection)) ;
-  }
-    $rows = mysqli_num_rows($result);
-
-                if ($rows) {
-                  # code...
-
-
-
-
-
-                        $query = "INSERT INTO $state(username,name,address,state,phone) ";
-                        $query .= "VALUE ('$username', '$name', '$address', '$state', '$phone')";
-
-
-                        $result = mysqli_query($connection, $query);
-
-                        if (!$result) {
-                          # code...
-                        die("Query FAILED here" . mysqli_error($connection)) ;
-                        }
-                        else {
-
-                        header("Location: User_Page.php");
-
-                        }
-
-                }
-
-                else {
-                  $query= ( "CREATE TABLE ".$state." ( id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, username VARCHAR(30) NOT NULL, password VARCHAR(200) NOT NULL, name VARCHAR(30) NOT NULL, address VARCHAR(30) NOT NULL, state VARCHAR(30) NOT NULL, phone VARCHAR(30) NOT NULL)");
-
-                  $result = mysqli_query($connection, $query);
-
-                  if (!$result) {
-                    # code...
-                  die("Query FAILED   here" . mysqli_error($connection)) ;
-                  }
-                  else {
-                  $query = "INSERT INTO ".$state." (username,name,address,state,phone) ";
-                  $query .= "VALUE ('$username', '$name', '$address', '$state', '$phone')";
-
-
-                  $result = mysqli_query($connection, $query);
-
-                  if (!$result) {
-                    # code...
-                  die("Query FAILED 2here" . mysqli_error($connection)) ;
-                  }
-                  else {
-                  header("Location: User_Page.php");
-
-                  }
-                }
-                }
-
-
-  }
-
-
-
-
-
-
-
-    # code...
-  //   if ($username && $password) {
-  // }
-  //
-  // else {
-  //   echo "fill out fields";
-  // }
-  // echo "$username" . "$password";
-  // }
-
-
-
-
-
+              }
 ?>
 
 

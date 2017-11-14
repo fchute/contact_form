@@ -3,7 +3,7 @@
 $host = "localhost";
 $user = "root";
 $password = "";
-$database = "contact_test";
+$database = "testingcontact3";
 
 
 

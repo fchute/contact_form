@@ -1,48 +1,12 @@
 <?php
 
-include 'authenticate.php';
+include 'Includes\authenticate.php';
 
+include 'Includes\DB_Config.php';
 
-include 'DB_Config.php';
-// Getting state from list table
-$username =  $_SESSION['username'];
+include 'Includes\Fetch_State_Info.php';
 
-
-$query = "SELECT state FROM list WHERE username = '$username'";
-
-
-$state_get = mysqli_query($connection, $query);
-
-
-if (!$state_get) {
-  # code...
-die("Query FAILED" . mysqli_error($connection)) ;
-}
-
-
-$state = mysqli_fetch_array($state_get);
-
-$state=$state['state'];
-// Getting state from list table
-
-
-
-$query = "SELECT id, username, name, address, state, phone FROM $state";
-
-
-
-
-$result = mysqli_query($connection, $query);
-
-if (!$result) {
-  # code...
-die("Query FAILED" . mysqli_error($connection)) ;
-}
-
-
-
-
- ?>
+?>
 
 
 <!DOCTYPE html>
@@ -113,7 +77,7 @@ die("Query FAILED" . mysqli_error($connection)) ;
 
 
      <table class="">
-     <tr><th>Id</th><th>Username</th><th>Name</th><th>Address</th><th>State</th><th>Phone</th></tr>
+     <tr><th>State Id</th><th>Username</th><th>Name</th><th>Address</th><th>State</th><th>Phone</th></tr>
 
 <?php
 // while ($row= mysqli_fetch_row($result)) {
