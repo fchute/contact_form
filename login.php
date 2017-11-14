@@ -2,21 +2,11 @@
 session_start();
 
 
+include 'DB_Config.php';
 if(isset($_POST['submit'])){
 
 
 
-
-
-$connection = mysqli_connect('localhost', 'root', '', 'contact');
-
-if($connection){
-
-  echo "were connected";
-}
-else {
-  die("database connection failed");
-}
 
 $username =  $_POST['username'];
 $password =  $_POST['password'];

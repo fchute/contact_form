@@ -2,11 +2,8 @@
 
 include 'authenticate.php';
 
-$connection = mysqli_connect('localhost', 'root', '', 'contact');
 
-if(!$connection) {
-  die("database connection failed");
-}
+include 'DB_Config.php';
 // Getting state from list table
 $username =  $_SESSION['username'];
 
