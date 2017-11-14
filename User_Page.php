@@ -1,6 +1,6 @@
 
 
-<?php include 'Includes\authenticate.php'; ?>
+<?php include './Includes/authenticate.php'; ?>
 
 
 

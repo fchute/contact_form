@@ -2,7 +2,7 @@
 
 session_start();
 
-include 'Includes\DB_Config.php';
+include './Includes/DB_Config.php';
 
 
 
@@ -10,20 +10,20 @@ include 'Includes\DB_Config.php';
     if(isset($_POST['submit']))
     {
 
-    include 'Includes\preparefields.php';
+    include './Includes/preparefields.php';
 
-    include 'Includes\Add_To_Primary_Directory.php';
+    include './Includes/Add_To_Primary_Directory.php';
     }
 
 
     if(isset($_POST['submit']))
     {
 
-    include 'Includes\preparefields.php';
+    include './Includes/preparefields.php';
 
-    include 'Includes\Add_To_State_Directory.php';
+    include './Includes/Add_To_State_Directory.php';
 
-    include 'Includes\Add_State_Id_To_Primary_Directory.php';
+    include './Includes/Add_State_Id_To_Primary_Directory.php';
 
     header("Location: User_Page.php");
 

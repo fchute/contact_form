@@ -1,12 +1,12 @@
 <?php
 
-include 'Includes\authenticate.php';
+include './Includes/authenticate.php';
 
 
-include 'Includes\DB_Config.php';
+include './Includes/DB_Config.php';
 
 
-include 'Includes\Fetch_Full_Info.php';
+include './Includes/Fetch_Full_Info.php';
 
 
 ?>

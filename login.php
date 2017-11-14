@@ -2,13 +2,13 @@
 session_start();
 
 
-include 'Includes\DB_Config.php';
+include './Includes/DB_Config.php';
 if(isset($_POST['submit']))
   {
 
-  include 'Includes\Prepare_Username_And_Password.php';
+  include './Includes/Prepare_Username_And_Password.php';
 
-  include 'Includes\Check_Username_And_Password.php';
+  include './Includes/Check_Username_And_Password.php';
 
   }
 ?>
